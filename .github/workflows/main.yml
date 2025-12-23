@@ -1,0 +1,24 @@
+
+# name: Notify Discord on TIL Commit
+
+# on:
+#   push:
+#     branches:
+#       - main  # 또는 master
+#     paths:
+#       - '**'  # 모든 파일 변경 감지 (원하면 'TIL/**'로 제한 가능)
+
+# jobs:
+#   notify:
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#       - name: Notify Lambda
+#         run: |
+#           curl -X POST "${{ secrets.LAMBDA_WEBHOOK_URL }}" \
+#             -H "Content-Type: application/json" \
+#             -d "{
+#               \"user\": \"${{ github.event.head_commit.author.username || github.actor }}\",
+#               \"repo\": \"${{ github.repository }}\",
+#               \"commit_sha\": \"${{ github.sha }}\"
+#             }"
