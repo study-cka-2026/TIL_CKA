@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end
+spec:
+  type: ClusterIP
+  ports:
+  - targetPort: 80 # 백엔드가 노출되는 포트
+    port: 80 # 서비스가 노출되는 포트
+  selector:
+    app: myapp
+    type: back-end
