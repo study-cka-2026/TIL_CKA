@@ -1,0 +1,18 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: pod-validation-webhook
+webhooks:
+- name: validate-pod.example.com
+  clientConfig:
+    # url: https://pod-validation-webhook.default.svc.cluster.local/validate 외부 서버로 배포한 경우
+    service:
+      name: pod-validation-service
+      namespace: default
+    caBundle: <BASE64_ENCODED_CA_CERT>
+  rules:
+  - operations: ["CREATE", "UPDATE"]
+    apiGroups: [""]
+    apiVersions: ["v1"]
+    resources: ["pods"]
+    scope: "*"
