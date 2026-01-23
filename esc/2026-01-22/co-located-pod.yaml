@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    app.kubernetes.io/name: myapp
+spec:
+  containers:
+  - name: web-app
+    image: web-app
+    ports:
+      - containerPort: 8080
+  - name: main-app
+    image: main-app
+    ports:
+      - containerPort: 9090

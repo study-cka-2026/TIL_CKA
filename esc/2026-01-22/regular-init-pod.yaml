@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    app.kubernetes.io/name: myapp
+spec:
+  containers:
+  - name: web-app
+    image: web-app
+    ports:
+      - containerPort: 8080
+  initContainers:
+  - name: init-main-app
+    image: main-app
+    command: ['sh', '-c', 'echo Initializing main app... && sleep 5']
+  - name: db-migration
+    image: db-migration
+    command: ['sh', '-c', 'echo Running DB migrations... && sleep 5'] 
