@@ -1,0 +1,15 @@
+---
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+      - configmaps
+      - pandas.awesome.bears.example
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: c2VjcmV0MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=
+      - identity: {} # this fallback allows reading unencrypted secrets;
+                     # for example, during initial migration
